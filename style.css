@@ -1,129 +1,168 @@
-/* ===== Base ===== */
+/* Base styles */
 * {
-    box-sizing: border-box;
-  }
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Helvetica", "Arial", sans-serif;
-    color: #333;
-    background: #fff;
-    line-height: 1.4;
-  }
-  
-  /* WCAG 2.1 AA contrast ensured: #333 on #fff */
-  
-  h1,
-  h2 {
-    margin: 0.25rem 0 0.5rem;
-    font-weight: 700;
-  }
-  
-  header {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  #filter-bar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.5rem;
-    align-items: end;
-  }
-  
-  #filter-bar label,
-  #filter-bar button {
-    font-size: 0.875rem;
-  }
-  
-  button {
-    cursor: pointer;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid #888;
-    background: #f8f8f8;
-    border-radius: 4px;
-  }
-  button:hover,
-  button:focus {
-    background: #e2e2e2;
-  }
-  
-  .panel {
-    padding: 1rem;
-  }
-  
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 0.75rem;
-  }
-  .kpi-tile {
-    background: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 0.75rem;
-    text-align: center;
-  }
-  .kpi-value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    display: block;
-  }
-  .kpi-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.03em;
-  }
-  
-  /* ===== Tabs ===== */
-  #tabs {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 1rem;
-    border-bottom: 1px solid #ccc;
-  }
-  #tabs button {
-    border: none;
-    background: transparent;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-  #tabs button[aria-selected="true"] {
-    border-bottom: 3px solid #000;
-    font-weight: 700;
-  }
-  
-  .tab-pane {
-    padding: 1rem;
-  }
-  .plot {
-    width: 100%;
-    min-height: 320px;
-    margin-bottom: 1rem;
-  }
-  .table-wrapper {
-    overflow-x: auto;
-    border: 1px solid #ddd;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  .geo-two-col {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-  
-  /* ===== Modal ===== */
-  dialog {
-    border: 1px solid #666;
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    max-width: 420px;
-  }
-  dialog::backdrop {
-    background: rgba(0, 0, 0, 0.4);
-  }
-  
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #212529;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Headers */
+h1, h2 {
+  color: #212529;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Header */
+header {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+}
+
+/* Filter bar */
+#filter-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  width: 100%;
+}
+
+#filter-bar label,
+#filter-bar button,
+#filter-bar select {
+  font-size: 1rem;
+  color: #212529;
+}
+
+/* Buttons and Inputs */
+button,
+select,
+input[type="text"] {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+button:hover,
+select:hover,
+input[type="text"]:hover {
+  background-color: #0056b3;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  justify-content: center;
+}
+
+.kpi-tile {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #212529;
+  margin-bottom: 10px;
+}
+
+.kpi-label {
+  font-size: 1rem;
+  color: #495057;
+}
+
+/* Tabs */
+#tabs {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 20px;
+}
+
+#tabs button {
+  background-color: transparent;
+  color: #212529;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-bottom: 3px solid transparent;
+}
+
+#tabs button[aria-selected="true"] {
+  border-bottom: 3px solid #007bff;
+  font-weight: bold;
+}
+
+.tab-pane {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Plots and Tables */
+.plot {
+  width: 100%;
+  min-height: 400px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Modal */
+dialog {
+  border: 1px solid #6c757d;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/* geo-two-col */
+.geo-two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
