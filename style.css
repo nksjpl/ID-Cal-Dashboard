@@ -1,0 +1,129 @@
+/* ===== Base ===== */
+* {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+    color: #333;
+    background: #fff;
+    line-height: 1.4;
+  }
+  
+  /* WCAG 2.1 AA contrast ensured: #333 on #fff */
+  
+  h1,
+  h2 {
+    margin: 0.25rem 0 0.5rem;
+    font-weight: 700;
+  }
+  
+  header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  #filter-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    align-items: end;
+  }
+  
+  #filter-bar label,
+  #filter-bar button {
+    font-size: 0.875rem;
+  }
+  
+  button {
+    cursor: pointer;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #888;
+    background: #f8f8f8;
+    border-radius: 4px;
+  }
+  button:hover,
+  button:focus {
+    background: #e2e2e2;
+  }
+  
+  .panel {
+    padding: 1rem;
+  }
+  
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.75rem;
+  }
+  .kpi-tile {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  .kpi-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: block;
+  }
+  .kpi-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+  
+  /* ===== Tabs ===== */
+  #tabs {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  #tabs button {
+    border: none;
+    background: transparent;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  #tabs button[aria-selected="true"] {
+    border-bottom: 3px solid #000;
+    font-weight: 700;
+  }
+  
+  .tab-pane {
+    padding: 1rem;
+  }
+  .plot {
+    width: 100%;
+    min-height: 320px;
+    margin-bottom: 1rem;
+  }
+  .table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .geo-two-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  /* ===== Modal ===== */
+  dialog {
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    max-width: 420px;
+  }
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
