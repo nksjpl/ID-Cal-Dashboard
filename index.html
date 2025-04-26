@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  />
+  <title>ID-Cal-Dashboard</title>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&family=Arial:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!---- Header & global filter bar -->
+  <header id="header">
+    <h1>ID-Cal-Dashboard</h1>
+
+    <div id="filter-bar" role="region" aria-label="Global filters">
+      <label>
+        Disease
+        <select id="filter-disease"></select>
+      </label>
+      <label>
+        Sex
+        <select id="filter-sex">
+          <option value="All" selected>All</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+      </label>
+      <label>
+        County
+        <select id="filter-county" multiple></select>
+      </label>
+      <label>
+        Years
+        <input
+          type="range"
+          id="filter-year"
+          min="2005"
+          max="2025"
+          value="2025"
+          step="1"
+          aria-valuemin="2005"
+          aria-valuemax="2025"
+          aria-valuenow="2025"
+        />
+        <span id="year-range-label">2005-2025</span>
+      </label>
+
+      <button id="download-csv">Download CSV</button>
+      <button id="about-btn" aria-haspopup="dialog">About the Data</button>
+    </div>
+  </header>
+
+  <!---- KPI tiles -->
+  <section id="kpi-section" class="panel">
+    <h2>Quick-look KPIs</h2>
+    <div class="kpi-grid">
+      <div class="kpi-tile" id="kpi-total-cases" tabindex="0">
+        <span class="kpi-value">--</span>
+        <span class="kpi-label">Total Cases</span>
+      </div>
+      <div class="kpi-tile" id="kpi-incidence" tabindex="0">
+        <span class="kpi-value">--</span>
+        <span class="kpi-label">Incidence / 100 000</span>
+      </div>
+      <div class="kpi-tile" id="kpi-ytd" tabindex="0">
+        <span class="kpi-value">--</span>
+        <span class="kpi-label">YTD Δ vs LY</span>
+      </div>
+      <div class="kpi-tile" id="kpi-median-age" tabindex="0">
+        <span class="kpi-value">--</span>
+        <span class="kpi-label">Median Age †</span>
+      </div>
+    </div>
+  </section>
+
+  <!---- Tabs container (Temporal / Geographic / Demographic / etc.) -->
+  <nav id="tabs" role="tablist">
+    <button role="tab" aria-controls="tab-temporal" aria-selected="true">
+      Temporal Trends
+    </button>
+    <button role="tab" aria-controls="tab-geo">Geographic Patterns</button>
+    <button role="tab" aria-controls="tab-demo">Demographics</button>
+    <button role="tab" aria-controls="tab-comp">Comparative Views</button>
+    <button role="tab" aria-controls="tab-progress">Progress</button>
+    <button role="tab" aria-controls="tab-quality">Data Quality</button>
+  </nav>
+
+  <!---- ==== Tab Panes ==== -->
+
+  <!-- Temporal Trends -->
+  <section id="tab-temporal" class="tab-pane" role="tabpanel">
+    <div id="trend-series" class="plot"></div>
+    <div id="trend-yoy" class="plot"></div>
+    <label>
+      <input type="checkbox" id="chk-ma3" /> 3-year moving average
+    </label>
+  </section>
+
+  <!-- Geographic Patterns -->
+  <section id="tab-geo" class="tab-pane" role="tabpanel" hidden>
+    <div id="geo-toggle">
+      <label>
+        <input
+          type="radio"
+          name="geo-metric"
+          value="cases"
+          checked
+        /> Absolute Cases
+      </label>
+      <label>
+        <input type="radio" name="geo-metric" value="incidence" /> Incidence
+        Rate
+      </label>
+    </div>
+    <div id="map-choropleth" class="plot"></div>
+
+    <div class="geo-two-col">
+      <div id="tbl-county-rank" class="table-wrapper"></div>
+      <div id="lst-emerging" class="table-wrapper"></div>
+    </div>
+  </section>
+
+  <!-- Demographics -->
+  <section id="tab-demo" class="tab-pane" role="tabpanel" hidden>
+    <div id="sex-ratio" class="plot"></div>
+    <div id="kpi-sex-pct" class="kpi-grid"></div>
+  </section>
+
+  <!-- Comparative Views -->
+  <section id="tab-comp" class="tab-pane" role="tabpanel" hidden>
+    <div id="mini-multiples" class="plot"></div>
+    <div id="scatter-pop" class="plot"></div>
+    <div id="heat-matrix" class="plot"></div>
+  </section>
+
+  <!-- Progress -->
+  <section id="tab-progress" class="tab-pane" role="tabpanel" hidden>
+    <div id="cum-prop" class="plot"></div>
+    <div id="cases-averted" class="plot"></div>
+  </section>
+
+  <!-- Data Quality -->
+  <section id="tab-quality" class="tab-pane" role="tabpanel" hidden>
+    <div id="gauge-completeness" class="plot"></div>
+    <div id="tbl-data-errors" class="table-wrapper"></div>
+  </section>
+
+  <!---- About modal -->
+  <dialog id="about-modal" aria-label="About the data">
+    <h2>About the Data</h2>
+    <p>
+      Source: California Department of Public Health, 2005-2025.<br />
+      Refresh cadence: annual, each March.<br />
+      Incidence = Cases / Population × 100 000.<br />
+      95 % CI via exact Poisson; Prediction interval by χ².
+    </p>
+    <button id="about-close">Close</button>
+  </dialog>
+
+  <!-- Scripts -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
